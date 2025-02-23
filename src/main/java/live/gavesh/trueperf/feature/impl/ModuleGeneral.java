@@ -30,13 +30,13 @@ public class ModuleGeneral implements IFeature {
 		ps.executeCommand("Set-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' -Name 'SystemUsesLightTheme' -Value 0");
 		ps.executeCommand("Set-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' -Name 'AppsUseLightTheme' -Value 0");
 		Logger.info("Turn on Darked Mode!");
-		
-		ps.executeCommand("Set-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband' -Name 'Favorites' -Type Binary -Value (255)");
-		ps.executeCommand("Remove-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Taskband' -Name 'FavoritesResolve' -ErrorAction SilentlyContinue");
-		Logger.info("Unpinned All Tiles!");
-		
-		ps.executeCommand("powercfg -setactive SCHEME_MIN");
-		Logger.info("Enabled High-Performance");	
+				
+		try {
+			ps.executeCommand("powercfg -setactive SCHEME_MIN");
+			Logger.info("Enabled High-Performance");	
+		} catch (Exception e) {
+			Logger.error("Cannot enable High-Performance mode");
+		}
 	}
 
 	@Override
