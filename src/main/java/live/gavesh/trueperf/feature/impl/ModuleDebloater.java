@@ -117,7 +117,7 @@ public class ModuleDebloater implements IFeature {
 
 	@Override
 	public String getName() {
-		return "Debloater";
+		return "Bloatware Removal";
 	}
 
 	@Override
@@ -145,7 +145,7 @@ public class ModuleDebloater implements IFeature {
 
 	@Override
 	public void onEnd() {
-
+		showDialog("Restart Recommended!");
 	}
 
 }

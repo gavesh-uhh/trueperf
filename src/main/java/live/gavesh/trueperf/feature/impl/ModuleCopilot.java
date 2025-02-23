@@ -16,7 +16,7 @@ public class ModuleCopilot implements IFeature {
 
 	@Override
 	public String getDescription() {
-		return "Completly gets rid of AI slop";
+		return "Completly gets rid of AI slopware";
 	}
 
 	@Override

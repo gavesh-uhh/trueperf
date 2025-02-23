@@ -27,9 +27,7 @@ public class ModuleOneDrive implements IFeature {
 	    PSExecutor ps = new PSExecutor();
 	    if (WindowsUtils.serviceExists("OneDrive")) {
 	    	String stopOneDriveCommand = "Stop-Process -Name 'OneDrive' -Force -ErrorAction SilentlyContinue";
-		    String startSleepCommand1 = "Start-Sleep -s 2";
 		    ps.executeCommand(stopOneDriveCommand);
-		    ps.executeCommand(startSleepCommand1);
 	    } else {
 	    	Logger.error("One-Drive does not exist");
 	    } 
@@ -38,7 +36,7 @@ public class ModuleOneDrive implements IFeature {
 
 	@Override
 	public void onEnd() {
-
+		WindowsUtils.restartExplorer();
 	}
 
 }

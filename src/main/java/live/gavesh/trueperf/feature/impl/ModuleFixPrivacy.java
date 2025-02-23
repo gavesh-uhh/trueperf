@@ -9,7 +9,7 @@ public class ModuleFixPrivacy implements IFeature{
 
 	@Override
 	public String getName() {
-		return "Privacy Fixer";
+		return "Fix Privacy";
 	}
 
 	@Override

@@ -15,7 +15,7 @@ public class ModuleGamingOptimizations implements IFeature {
 
 	@Override
 	public String getDescription() {
-		return "Enables Ultimate Performance Mode, ";
+		return "Enables Ultimate Performance Mode, Adjusts visual changes";
 	}
 
 	@Override
@@ -29,6 +29,7 @@ public class ModuleGamingOptimizations implements IFeature {
 		ps.executeCommand("powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61");
 		ps.executeCommand("powercfg -setactive e9a42b02-d5df-448d-aa00-03f14749eb61");
 		Logger.info("Enabled Ultimate Performance Mode");
+		
 		ps.executeCommand(
 				"reg add 'HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications' /v GlobalUserDisabled /t REG_DWORD /d 1 /f\r\n");
 		Logger.info("Disabled Background Apps");
