@@ -10,7 +10,6 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import live.gavesh.trueperf.ui.AppFrame;
 import live.gavesh.trueperf.util.Logger;
 import live.gavesh.trueperf.util.PSExecutor;
-import live.gavesh.trueperf.util.WindowsUtils;
 
 public class App {
 

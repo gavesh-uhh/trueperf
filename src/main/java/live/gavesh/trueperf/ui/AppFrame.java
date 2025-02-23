@@ -7,19 +7,16 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.ui.FlatMarginBorder;
-
 import live.gavesh.trueperf.event.impl.LogEvent;
 import live.gavesh.trueperf.event.listeners.LogListener;
 import live.gavesh.trueperf.feature.FeatureManager;
 import live.gavesh.trueperf.feature.IFeature;
 import live.gavesh.trueperf.util.Logger;
+import live.gavesh.trueperf.util.PSExecutor;
 
 import java.awt.Component;
-import java.awt.Desktop;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -28,13 +25,13 @@ import java.awt.event.ActionEvent;
 
 public class AppFrame extends JFrame implements LogListener {
 
-	private static final String GITHUB_REPO =  "https://github.com/gavesh-uhh/trueperf";
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JEditorPane textBoxLoggingPane;
 	private FeatureManager featureManager;
 	private HTMLEditorKit editorKit;
 	private HTMLDocument htmlDocument;
+	private JButton btnRestorePoint;
 
 	public AppFrame() {
 		featureManager = new FeatureManager();
@@ -93,20 +90,23 @@ public class AppFrame extends JFrame implements LogListener {
 		btnClearLogs.setBounds(631, 10, 85, 36);
 		contentPane.add(btnClearLogs);
 		
-		JButton btnRedirectGithub = new JButton("Github");
-		btnRedirectGithub.addActionListener(new ActionListener() {
+		btnRestorePoint = new JButton("Create Restore Point");
+		btnRestorePoint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Desktop.getDesktop().browse(new URI(GITHUB_REPO));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				} catch (URISyntaxException e1) {
-					e1.printStackTrace();
+					String rpName = "trueperf_RP_" + LocalDateTime.now();
+					String formatted = String.format("Checkpoint-Computer -Description '%s' -RestorePointType 'MODIFY_SETTINGS'", rpName);
+					new PSExecutor().executeCommand(formatted);
+					JOptionPane.showMessageDialog(btnRestorePoint, "Restore Point Created as " + rpName);
+					Logger.info("Restore Point (" + rpName + ") created!");
+				} catch (Exception e1) {
+					Logger.error(e1.getMessage());
+					JOptionPane.showMessageDialog(btnRestorePoint, "Restore Point Creation Failed! Please Create One Manually Before Procceeding", "Error!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
-		btnRedirectGithub.setBounds(536, 10, 85, 36);
-		contentPane.add(btnRedirectGithub);
+		btnRestorePoint.setBounds(356, 10, 265, 36);
+		contentPane.add(btnRestorePoint);
 
 		Logger.setLogListener(this);
 	}
@@ -136,6 +136,7 @@ public class AppFrame extends JFrame implements LogListener {
 
 			@Override
 			protected Void doInBackground() throws Exception {
+				Logger.info(feature.getName() + " : Started Execution");
 				feature.onStart();
 				return null;
 			}

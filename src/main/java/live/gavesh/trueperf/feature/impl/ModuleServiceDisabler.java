@@ -3,15 +3,18 @@ package live.gavesh.trueperf.feature.impl;
 import live.gavesh.trueperf.feature.FeatureRisk;
 import live.gavesh.trueperf.feature.IFeature;
 import live.gavesh.trueperf.util.Logger;
+import live.gavesh.trueperf.util.PSExecutor;
+import live.gavesh.trueperf.util.WindowsUtils;
 
-public class ModuleServiceDisabler implements IFeature{
+public class ModuleServiceDisabler implements IFeature {
 
-	String sevices[] = new String [] {
-		"dmwappushsvc",
-		"dmwappushservice",
-		"PeerDistSvc"
+	String services[] = new String[] {
+			"DiagTrack", "dmwappushsvc", "dmwappushservice", "PeerDistSvc",
+			"XblAuthManager", "XblGameSave", "XboxNetApiSvc", 
+			"RemoteRegistry", "RetailDemo", 
+			"HomeGroupListener", "HomeGroupProvider", 
 	};
-	
+
 	@Override
 	public String getName() {
 		return "Disable Services";
@@ -24,17 +27,28 @@ public class ModuleServiceDisabler implements IFeature{
 
 	@Override
 	public FeatureRisk getRiskLevel() {
-		return FeatureRisk.MEDIUM;
+		return FeatureRisk.HIGH;
 	}
 
 	@Override
 	public void onStart() throws Exception {
-		Logger.warn("Service Disable Started...");
+		PSExecutor ps = new PSExecutor();
+		for (String string : services) {
+			try {
+				if (!WindowsUtils.serviceExists(string))
+					return;
+				ps.executeCommand(String.format("Stop-Service -Name '%s' -Force", string));
+				ps.executeCommand(String.format("Set-Service -Name '%s' -StartupType Disabled", string));
+				Logger.info(string + " succesfully disabled");
+			} catch (Exception e) {
+				Logger.error(e.getMessage().trim());
+			}
+		}
 	}
 
 	@Override
 	public void onEnd() {
-		
+
 	}
 
 }

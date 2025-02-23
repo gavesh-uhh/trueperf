@@ -25,7 +25,6 @@ public class ModuleFixPrivacy implements IFeature{
 	@Override
 	public void onStart() throws Exception {
 		PSExecutor ps = new PSExecutor();
-		Logger.warn("Privacy Fixer : Started Running");
 		
 		ps.executeCommand("Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\DataCollection' -Name 'AllowTelemetry' -Type DWord -Value 0");
 		ps.executeCommand("Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Policies\\DataCollection' -Name 'AllowTelemetry' -Type DWord -Value 0");

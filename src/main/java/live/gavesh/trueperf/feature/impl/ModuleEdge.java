@@ -2,7 +2,6 @@ package live.gavesh.trueperf.feature.impl;
 
 import live.gavesh.trueperf.feature.FeatureRisk;
 import live.gavesh.trueperf.feature.IFeature;
-import live.gavesh.trueperf.util.Logger;
 
 public class ModuleEdge implements IFeature{
 

@@ -1,11 +1,11 @@
 package live.gavesh.trueperf.feature.impl;
 
-import java.util.LinkedList;
+
 import live.gavesh.trueperf.feature.FeatureRisk;
 import live.gavesh.trueperf.feature.IFeature;
 import live.gavesh.trueperf.util.Logger;
 import live.gavesh.trueperf.util.PSExecutor;
-import live.gavesh.trueperf.util.WindowsUtils;
+
 
 public class ModuleCopilot implements IFeature {
 
@@ -26,7 +26,6 @@ public class ModuleCopilot implements IFeature {
 
 	public void onStart() throws Exception {
 		PSExecutor ps = new PSExecutor();
-		Logger.warn("Uninstall Copilot : Started Running");
 		try {
 			ps.executeCommand(
 					"reg add 'HKEY_CURRENT_USER\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows\\WindowsCopilot' /v 'TurnOffWindowsCopilot' /t REG_DWORD /d 1 /f");

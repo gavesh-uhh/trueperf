@@ -1,6 +1,6 @@
 package live.gavesh.trueperf.feature.impl;
 
-import java.util.LinkedList;
+
 import live.gavesh.trueperf.feature.FeatureRisk;
 import live.gavesh.trueperf.feature.IFeature;
 import live.gavesh.trueperf.util.Logger;
@@ -16,7 +16,7 @@ public class ModuleGeneral implements IFeature {
 
 	@Override
 	public String getDescription() {
-		return "Enables Dark Mode, Disable Tips";
+		return "Enables Dark Mode, Disable Tips, Enable High Performance";
 	}
 
 	@Override
@@ -26,7 +26,6 @@ public class ModuleGeneral implements IFeature {
 
 	@Override
 	public void onStart() throws Exception{
-		Logger.warn("General Optimizations : Started Running...");
 		PSExecutor ps = new PSExecutor();
 		ps.executeCommand("Set-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' -Name 'SystemUsesLightTheme' -Value 0");
 		ps.executeCommand("Set-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' -Name 'AppsUseLightTheme' -Value 0");

@@ -133,7 +133,6 @@ public class ModuleDebloater implements IFeature {
 	@Override
 	public void onStart() throws Exception {
 		PSExecutor ps = new PSExecutor();
-		Logger.warn("Debloater : Started Running...");
 		for (String string : packages) {
 			try {
 				ps.executeCommand("Get-AppxPackage '" + string + "'  | Remove-AppxPackage");
