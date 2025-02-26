@@ -1,8 +1,13 @@
-# truePerf
-simple windows optimizer written in Java
+# trueperf
+`Work in Progress` almost one click windows "optimizer" written with Java
 
-### Screenshot
-![Screenshot 2025-02-23 113343](https://github.com/user-attachments/assets/a1438fe8-5aa5-4e62-a09d-6eac1c216b18)
+## Features
+- Bloatware Removal
+- Disable Telemetry
+- Disable Useless Services
 
-### License
-MIT License
+## Future
+More features to come and already existing ones need to be improved a lot.
+
+## Licence
+`MIT` do anything, i dont really care.

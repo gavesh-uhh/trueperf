@@ -72,7 +72,7 @@ public class AppFrame extends JFrame implements LogListener {
 			checkBox.putClientProperty(FlatClientProperties.STYLE,
 					"icon.checkmarkColor:" + feature.getRiskLevel().getColorHex());
 			checkBox.setToolTipText(
-					"<Risk Level: " + feature.getRiskLevel().getRiskLevel() + "> " + feature.getDescription());
+					"<Risk: " + feature.getRiskLevel().getRiskLevel() + "> " + feature.getDescription());
 			featurePanel.add(checkBox);
 		}
 
