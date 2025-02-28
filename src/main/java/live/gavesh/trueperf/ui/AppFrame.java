@@ -32,6 +32,7 @@ public class AppFrame extends JFrame implements LogListener {
 	private HTMLEditorKit editorKit;
 	private HTMLDocument htmlDocument;
 	private JButton btnRestorePoint;
+	private JScrollPane logScrollPane;
 
 	public AppFrame() {
 		featureManager = new FeatureManager();
@@ -54,8 +55,12 @@ public class AppFrame extends JFrame implements LogListener {
 		textBoxLoggingPane.setContentType("text/html");
 		textBoxLoggingPane.setEditorKit(editorKit);
 		textBoxLoggingPane.setDocument(htmlDocument);
-		textBoxLoggingPane.setBounds(356, 53, 360, 339);
-		contentPane.add(textBoxLoggingPane);
+		textBoxLoggingPane.setEditable(false);
+
+		logScrollPane = new JScrollPane(textBoxLoggingPane);
+		logScrollPane.setBounds(356, 53, 360, 339);
+		logScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		contentPane.add(logScrollPane);
 
 		JLabel lblFeatureSelection = new JLabel("Select Fixes:");
 		lblFeatureSelection.setBounds(14, 25, 180, 20);

@@ -8,12 +8,9 @@ import live.gavesh.trueperf.util.WindowsUtils;
 
 public class ModuleServiceDisabler implements IFeature {
 
-	String services[] = new String[] {
-			"DiagTrack", "dmwappushsvc", "dmwappushservice", "PeerDistSvc",
-			"XblAuthManager", "XblGameSave", "XboxNetApiSvc", 
-			"RemoteRegistry", "RetailDemo", 
-			"HomeGroupListener", "HomeGroupProvider", 
-	};
+	String services[] = new String[] { "DiagTrack", "dmwappushservice", "PeerDistSvc", "XblAuthManager", "XblGameSave",
+			"XboxNetApiSvc", "RemoteRegistry", "Retail Demo", "HomeGroupListener", "HomeGroupProvider", "sysmain",
+			"WMPNetworkSvc", "RemoteAccess", "SSDPSRV", "TabletInputService", "WwanSvc" };
 
 	@Override
 	public String getName() {

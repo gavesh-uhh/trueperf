@@ -10,6 +10,8 @@ public interface IFeature {
 	void onStart() throws Exception ;
 	void onEnd();
 	
+	public default void onReEnable() {}
+	
 	public default void showDialog(String message) {
 		JOptionPane.showMessageDialog(null, message, this.getName(), JOptionPane.WARNING_MESSAGE);
 	}

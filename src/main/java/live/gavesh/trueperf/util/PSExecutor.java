@@ -34,7 +34,7 @@ public class PSExecutor {
         if (process.waitFor() == 0) return output.toString().trim();
         else {
         	Logger.error("Error (Exit Code " + process.exitValue() + "):\n" + output);
-        	throw new Exception("Error (Exit Code " + process.exitValue() + "):\n" + output);
+        	return "Error: (Exit Code " + process.exitValue() + "):\n" + output;
         }
     }
 }
